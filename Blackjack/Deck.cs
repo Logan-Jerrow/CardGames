@@ -4,52 +4,6 @@ using System.Threading;
 
 namespace BlackjackModel
 {
-    internal class DeckOfCards
-    {
-        private List<Cards> unshuffledDeck;
-        public Stack<Cards> Deck { get; private set; }
-
-        public DeckOfCards()
-        {
-            Initialize();
-        }
-
-        private void Initialize()
-        {
-            unshuffledDeck = new List<Cards>();
-            foreach (Cards.SUIT s in Enum.GetValues(typeof(Cards.SUIT)))
-            {
-                foreach (Cards.VALUE v in Enum.GetValues(typeof(Cards.VALUE)))
-                {
-                    unshuffledDeck.Add(new Cards { mySuit = s, myValue = v });
-                }
-            }
-
-            for (int i = 0; i < 100; i++)
-            {
-                unshuffledDeck.Shuffle();
-            }
-
-            Deck = new Stack<Cards>(unshuffledDeck);
-        }
-
-        public Cards DrawACard()
-        {
-            return Deck.Pop();
-        }
-
-        public void PrintDeck()
-        {
-            int i = 0;
-            foreach (Cards c in Deck)
-            {
-                i++;
-                Console.WriteLine(c.ToString());
-            }
-            Console.WriteLine("Amount of cards: {0}", i);
-        }
-    }
-
     public static class ThreadSafeRandom
     {
         [ThreadStatic]
@@ -74,6 +28,53 @@ namespace BlackjackModel
                 list[k] = list[n];
                 list[n] = value;
             }
+        }
+    }
+
+    internal class DeckOfCards
+    {
+        private List<Cards> unshuffledDeck;
+
+        public DeckOfCards()
+        {
+            Initialize();
+        }
+
+        public Stack<Cards> Deck { get; private set; }
+
+        public Cards DrawACard()
+        {
+            return Deck.Pop();
+        }
+
+        public void PrintDeck()
+        {
+            int i = 0;
+            foreach (Cards c in Deck)
+            {
+                i++;
+                Console.WriteLine(c.ToString());
+            }
+            Console.WriteLine("Amount of cards: {0}", i);
+        }
+
+        private void Initialize()
+        {
+            unshuffledDeck = new List<Cards>();
+            foreach (Cards.SUIT s in Enum.GetValues(typeof(Cards.SUIT)))
+            {
+                foreach (Cards.VALUE v in Enum.GetValues(typeof(Cards.VALUE)))
+                {
+                    unshuffledDeck.Add(new Cards { mySuit = s, myValue = v });
+                }
+            }
+
+            for (int i = 0; i < 100; i++)
+            {
+                unshuffledDeck.Shuffle();
+            }
+
+            Deck = new Stack<Cards>(unshuffledDeck);
         }
     }
 }
