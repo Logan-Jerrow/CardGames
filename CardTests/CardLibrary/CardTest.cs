@@ -1,7 +1,4 @@
 ﻿using CardLibrary.Cards;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace CardTests.CardLibrary
@@ -9,11 +6,17 @@ namespace CardTests.CardLibrary
     public class CardTest
     {
         [Fact]
-        void Card_Created()
+        public void Card_Created()
         {
-            var card = Card.AceOfSpades;
-            Assert.NotNull(card);
-            Assert.Contains(nameof(Card.AceOfSpades), card.Name, StringComparison.Ordinal);
+            foreach (var card in Card.List)
+            {
+                Assert.NotNull(card);
+                Assert.Equal(
+                    card.Rank.Name + "Of" + card.Suit.Name,
+                    card.Name);
+                Assert.Equal(Suit.FromName(card.Suit.Name), card.Suit);
+                Assert.Equal(Rank.FromName(card.Rank.Name), card.Rank);
+            }
         }
     }
 }
