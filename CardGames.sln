@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleUI", "ConsoleUI\ConsoleUI.csproj", "{7E43F0A1-C3F1-4C86-8242-81620BB7D052}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI", "ConsoleUI\ConsoleUI.csproj", "{7E43F0A1-C3F1-4C86-8242-81620BB7D052}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardLibrary", "CardLibrary\CardLibrary.csproj", "{69F0B055-DF73-4F1A-83AE-61B18E4A22DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardLibrary", "CardLibrary\CardLibrary.csproj", "{69F0B055-DF73-4F1A-83AE-61B18E4A22DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardTests", "CardTests\CardTests.csproj", "{569876FE-C429-4AD8-9047-1A60046FE206}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardTests", "CardTests\CardTests.csproj", "{569876FE-C429-4AD8-9047-1A60046FE206}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
