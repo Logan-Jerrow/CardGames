@@ -8,7 +8,7 @@ namespace CardLibrary.Cards
         public Rank Rank { get; }
 
         private Card(string name, Suit suit, Rank rank)
-            : base(name, suit.Value * rank.Value)
+            : base(name, suit.Value * 100 + rank.Value)
         {
             Suit = suit;
             Rank = rank;
