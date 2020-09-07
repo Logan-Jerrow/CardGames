@@ -1,24 +1,29 @@
 ﻿using CardLibrary.Cards;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using System.Security.Cryptography;
 
 namespace CardLibrary
 {
     public sealed class Standard52CardDeck
     {
-        public ImmutableList<Card> Deck { get; private set; }
+        private readonly ImmutableList<Card> deck;
 
         public Standard52CardDeck() : this(Card.List.ToImmutableList()) { }
 
         private Standard52CardDeck(ImmutableList<Card> deck)
         {
-            Deck = deck;
+            this.deck = deck;
         }
+
+        public int Count => deck.Count;
+
+        public IList<Card> Cards => deck.ToList();
 
         public Standard52CardDeck Shuffle()
         {
-            List<Card> list = new List<Card>(Deck);
+            List<Card> list = new List<Card>(deck);
             using (var provider = new RNGCryptoServiceProvider())
             {
                 for (int i = list.Count - 1; i > 0; i--)
