@@ -28,7 +28,6 @@ namespace CardLibrary
 
         public Deck Pop(out Card card)
         {
-            if (deck.Count == 0) throw new IndexOutOfRangeException("Deck is empty.");
             card = deck.Last();
             return BuildDeck(deck.Remove(card));
         }

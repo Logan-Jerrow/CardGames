@@ -44,7 +44,7 @@ namespace CardTests.CardLibraryTest
         [Theory, AutoData]
         public void Deck_Pop_ThrowsIfDeckIsEmpty(Deck sut)
         {
-            Assert.Throws<IndexOutOfRangeException>(() => sut.Pop(out Card card));
+            Assert.Throws<InvalidOperationException>(() => sut.Pop(out Card card));
         }
 
         [Fact]
