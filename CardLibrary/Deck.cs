@@ -26,6 +26,11 @@ namespace CardLibrary
 
         public static Deck BuildStandard52CardDeck() => BuildDeck(Card.List.OrderBy(card => card.Value));
 
+        public Deck Add(Card card)
+        {
+            return new Deck(deck.Add(card));
+        }
+
         public Deck Pop(out Card card)
         {
             card = deck.Last();

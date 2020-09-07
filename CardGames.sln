@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardLibrary", "CardLibrary\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardTests", "CardTests\CardTests.csproj", "{569876FE-C429-4AD8-9047-1A60046FE206}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blackjack", "Blackjack\Blackjack.csproj", "{34EBFACA-BD5E-4C8D-8DC4-E0EBF47FCD0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackjackLibrary", "Blackjack\BlackjackLibrary.csproj", "{34EBFACA-BD5E-4C8D-8DC4-E0EBF47FCD0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
