@@ -9,7 +9,8 @@ namespace CardTests.BlackjackTests
         public void Dealer_Deck_IsCreated()
         {
             Dealer dealer = new Dealer();
-            dealer.Deck.Count.Should().Be(52);
+            dealer.Shuffle();
+
         }
     }
 }

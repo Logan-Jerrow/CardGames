@@ -6,22 +6,22 @@ using System.Security.Cryptography;
 
 namespace CardLibrary
 {
-    public sealed class Standard52CardDeck
+    public sealed class Deck
     {
         private readonly ImmutableList<Card> deck;
 
-        public Standard52CardDeck() : this(Card.List.ToImmutableList()) { }
+        public Deck() : this(Enumerable.Empty<Card>()) { }
 
-        private Standard52CardDeck(ImmutableList<Card> deck)
+        public Deck(IEnumerable<Card> deck)
         {
-            this.deck = deck;
+            this.deck = deck.ToImmutableList();
         }
 
         public int Count => deck.Count;
 
         public IList<Card> Cards => deck.ToList();
 
-        public Standard52CardDeck Shuffle()
+        public Deck Shuffle()
         {
             List<Card> list = new List<Card>(deck);
             using (var provider = new RNGCryptoServiceProvider())
@@ -32,8 +32,11 @@ namespace CardLibrary
                     Swap(list, k, i);
                 }
             }
-            return new Standard52CardDeck(list.ToImmutableList());
+            return new Deck(list.ToImmutableList());
         }
+        public static Deck BuildStandard52CardDeck() => BuildDeck(Card.List.OrderBy(card => card.Value));
+
+        private static Deck BuildDeck(IEnumerable<Card> list) => new Deck(list);
 
         private static void Swap(IList<Card> list, int index1, int index2)
         {
