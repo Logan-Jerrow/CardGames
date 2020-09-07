@@ -1,4 +1,5 @@
 ﻿using CardLibrary.Cards;
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -20,9 +21,17 @@ namespace CardLibrary
         }
 
         public IList<Card> Cards => deck.ToList();
+
         public int Count => deck.Count;
 
         public static Deck BuildStandard52CardDeck() => BuildDeck(Card.List.OrderBy(card => card.Value));
+
+        public Deck Pop(out Card card)
+        {
+            if (deck.Count == 0) throw new IndexOutOfRangeException("Deck is empty.");
+            card = deck.Last();
+            return BuildDeck(deck.Remove(card));
+        }
 
         public Deck Shuffle()
         {

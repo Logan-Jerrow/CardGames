@@ -1,5 +1,10 @@
-﻿using CardLibrary;
+﻿using AutoFixture;
+using AutoFixture.Xunit2;
+using CardLibrary;
+using CardLibrary.Cards;
 using FluentAssertions;
+using System;
+using System.Linq;
 using Xunit;
 
 namespace CardTests.CardLibraryTest
@@ -23,6 +28,23 @@ namespace CardTests.CardLibraryTest
             Deck deak = new Deck();
             deak.Should().NotBeNull();
             deak.Count.Should().Be(0, "Deck is empty.");
+        }
+
+        [Fact]
+        public void Deck_Pop_RemoveLastElement()
+        {
+            var sut = Deck.BuildStandard52CardDeck();
+            var originalDeck = sut.Cards;
+            var deck = sut.Pop(out Card card);
+
+            card.Should().Be(originalDeck.Last());
+            deck.Cards.Should().NotContain(card).And.HaveCount(originalDeck.Count - 1);
+        }
+
+        [Theory, AutoData]
+        public void Deck_Pop_ThrowsIfDeckIsEmpty(Deck sut)
+        {
+            Assert.Throws<IndexOutOfRangeException>(() => sut.Pop(out Card card));
         }
 
         [Fact]
