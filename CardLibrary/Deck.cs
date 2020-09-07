@@ -10,16 +10,19 @@ namespace CardLibrary
     {
         private readonly ImmutableList<Card> deck;
 
-        public Deck() : this(Enumerable.Empty<Card>()) { }
+        public Deck() : this(Enumerable.Empty<Card>())
+        {
+        }
 
         public Deck(IEnumerable<Card> deck)
         {
             this.deck = deck.ToImmutableList();
         }
 
+        public IList<Card> Cards => deck.ToList();
         public int Count => deck.Count;
 
-        public IList<Card> Cards => deck.ToList();
+        public static Deck BuildStandard52CardDeck() => BuildDeck(Card.List.OrderBy(card => card.Value));
 
         public Deck Shuffle()
         {
@@ -34,16 +37,8 @@ namespace CardLibrary
             }
             return new Deck(list.ToImmutableList());
         }
-        public static Deck BuildStandard52CardDeck() => BuildDeck(Card.List.OrderBy(card => card.Value));
 
         private static Deck BuildDeck(IEnumerable<Card> list) => new Deck(list);
-
-        private static void Swap(IList<Card> list, int index1, int index2)
-        {
-            Card temp = list[index1];
-            list[index1] = list[index2];
-            list[index2] = temp;
-        }
 
         private static int GetK(RNGCryptoServiceProvider provider, int n)
         {
@@ -51,6 +46,13 @@ namespace CardLibrary
             do provider.GetBytes(box);
             while (!(box[0] < n * (byte.MaxValue / n)));
             return (box[0] % n);
+        }
+
+        private static void Swap(IList<Card> list, int index1, int index2)
+        {
+            Card temp = list[index1];
+            list[index1] = list[index2];
+            list[index2] = temp;
         }
     }
 }

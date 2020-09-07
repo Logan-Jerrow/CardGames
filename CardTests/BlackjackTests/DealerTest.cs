@@ -1,6 +1,6 @@
-﻿using Xunit;
-using Blackjack;
-using FluentAssertions;
+﻿using Blackjack;
+using Xunit;
+
 namespace CardTests.BlackjackTests
 {
     public class DealerTest
@@ -10,7 +10,6 @@ namespace CardTests.BlackjackTests
         {
             Dealer dealer = new Dealer();
             dealer.Shuffle();
-
         }
     }
 }

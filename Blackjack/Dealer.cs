@@ -1,7 +1,4 @@
 ﻿using CardLibrary;
-using CardLibrary.Cards;
-using System;
-using System.Collections.Generic;
 
 namespace Blackjack
 {
@@ -15,8 +12,5 @@ namespace Blackjack
         public Deck Deck { get; private set; }
 
         public void Shuffle() => Deck = Deck.Shuffle();
-
-
     }
 }
-

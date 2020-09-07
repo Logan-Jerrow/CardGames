@@ -1,13 +1,9 @@
-﻿using CardLibrary.Cards;
-using System;
-
-namespace ConsoleUI
+﻿namespace ConsoleUI
 {
-    class Program
+    internal class Program
     {
-        static void Main()
+        private static void Main()
         {
-
         }
     }
 }
