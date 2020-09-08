@@ -11,17 +11,13 @@ namespace BlackjackLibrary
         public Blackjack()
         {
             DealerDeck = Deck.BuildStandard52CardDeck().Shuffle();
-            PlayerDeck = new Deck();
         }
 
         public Deck DealerDeck { get; private set; }
 
-        public Deck PlayerDeck { get; private set; }
-
-        public void Deal()
-        {
-            DealerDeck = DealerDeck.Pop(out Card card);
-            PlayerDeck = PlayerDeck.Add(card);
-        }
+        //public void Deal()
+        //{
+        //    //DealerDeck = DealerDeck.Pop(out Card card);
+        //}
     }
 }

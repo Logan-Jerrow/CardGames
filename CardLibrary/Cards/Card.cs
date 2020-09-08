@@ -4,8 +4,6 @@ namespace CardLibrary.Cards
 {
     public class Card : SmartEnum<Card>
     {
-        #region Card Definitions
-
         public static readonly Card AceOfClubs = new Card(nameof(AceOfClubs), Suit.Clubs, Rank.Ace);
         public static readonly Card AceOfDiamonds = new Card(nameof(AceOfDiamonds), Suit.Diamonds, Rank.Ace);
         public static readonly Card AceOfHearts = new Card(nameof(AceOfHearts), Suit.Hearts, Rank.Ace);
@@ -58,8 +56,6 @@ namespace CardLibrary.Cards
         public static readonly Card TwoOfDiamonds = new Card(nameof(TwoOfDiamonds), Suit.Diamonds, Rank.Two);
         public static readonly Card TwoOfHearts = new Card(nameof(TwoOfHearts), Suit.Hearts, Rank.Two);
         public static readonly Card TwoOfSpades = new Card(nameof(TwoOfSpades), Suit.Spades, Rank.Two);
-
-        #endregion Card Definitions
 
         private Card(string name, Suit suit, Rank rank)
             : base(name, suit.Value * 100 + rank.Value)

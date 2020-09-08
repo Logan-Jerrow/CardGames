@@ -1,5 +1,4 @@
 ﻿using CardLibrary.Cards;
-using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -24,11 +23,18 @@ namespace CardLibrary
 
         public int Count => deck.Count;
 
+        public static Deck BuildDeck(IEnumerable<Card> list) => new Deck(list);
+
         public static Deck BuildStandard52CardDeck() => BuildDeck(Card.List.OrderBy(card => card.Value));
 
         public Deck Add(Card card)
         {
             return new Deck(deck.Add(card));
+        }
+
+        public Deck Add(IEnumerable<Card> card)
+        {
+            return new Deck(deck.AddRange(card));
         }
 
         public Deck Pop(out Card card)
@@ -50,8 +56,6 @@ namespace CardLibrary
             }
             return new Deck(list.ToImmutableList());
         }
-
-        private static Deck BuildDeck(IEnumerable<Card> list) => new Deck(list);
 
         private static int GetK(RNGCryptoServiceProvider provider, int n)
         {
