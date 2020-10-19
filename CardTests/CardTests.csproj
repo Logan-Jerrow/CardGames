@@ -35,8 +35,5 @@
     <ProjectReference Include="..\Blackjack\BlackjackLibrary.csproj" />
     <ProjectReference Include="..\CardLibrary\CardLibrary.csproj" />
   </ItemGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="RMDIR &quot;$(TargetDir)de/&quot; /S /Q&#xD;&#xA;RMDIR &quot;$(TargetDir)es/&quot; /S /Q &#xD;&#xA;RMDIR &quot;$(TargetDir)fr/&quot; /S /Q&#xD;&#xA;RMDIR &quot;$(TargetDir)it/&quot; /S /Q&#xD;&#xA;RMDIR &quot;$(TargetDir)ja/&quot; /S /Q&#xD;&#xA;RMDIR &quot;$(TargetDir)ko/&quot; /S /Q&#xD;&#xA;RMDIR &quot;$(TargetDir)ru/&quot; /S /Q&#xD;&#xA;RMDIR &quot;$(TargetDir)zh-Hans/&quot; /S /Q&#xD;&#xA;RMDIR &quot;$(TargetDir)zh-Hant/&quot; /S /Q&#xD;&#xA;RMDIR &quot;$(TargetDir)cs/&quot; /S /Q&#xD;&#xA;RMDIR &quot;$(TargetDir)pl/&quot; /S /Q&#xD;&#xA;RMDIR &quot;$(TargetDir)pt-BR/&quot; /S /Q&#xD;&#xA;RMDIR &quot;$(TargetDir)tr/&quot; /S /Q" />
-  </Target>
+  
 </Project>
