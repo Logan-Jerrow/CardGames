@@ -1,0 +1,6 @@
+# You can learn more about editorconfig here: https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
+[*.cs]
+
+# CA1303: Don't pass string literals as parameter.
+# Used for language localization.
+dotnet_diagnostic.CA1303.severity = none
