@@ -43,6 +43,22 @@ namespace BlackjackLibrary
 
         public Deck DealerDeck { get; private set; }
 
+        public void StartGame()
+        {
+            // Player is dealt two cards.
+
+
+            bool gameLoopFlag = false;
+            do
+            {
+
+                if (Console.ReadKey().KeyChar == 'q')
+                {
+                    gameLoopFlag = true;
+                }
+            } while (gameLoopFlag);
+        }
+
         //public void Deal()
         //{
         //    //DealerDeck = DealerDeck.Pop(out Card card);
