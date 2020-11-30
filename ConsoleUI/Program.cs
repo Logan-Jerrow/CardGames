@@ -1,9 +1,30 @@
-﻿namespace ConsoleUI
+﻿using System;
+using BlackjackLibrary;
+
+bool flag = false;
+do
 {
-    internal class Program
+
+    System.Console.WriteLine("Select option:");
+    System.Console.WriteLine("[b]: To play a game of Blackjack.");
+    System.Console.WriteLine("[q]: To quit.");
+    switch (Console.ReadKey().KeyChar)
     {
-        private static void Main()
-        {
-        }
+        case 'B':
+        case 'b':
+            StartGame();
+            break;
+        case 'Q':
+        case 'q':
+            flag = false;
+            break;
+        default:
+            System.Console.WriteLine("Unknown option.");
+            break;
     }
+} while (flag);
+
+void StartGame()
+{
+    new Blackjack().StartGame();
 }
