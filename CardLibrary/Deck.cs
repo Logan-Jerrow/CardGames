@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Security.Cryptography;
+using System;
 
 namespace CardLibrary
 {
@@ -10,37 +11,43 @@ namespace CardLibrary
     {
         private readonly ImmutableList<Card> deck;
 
-        public Deck() : this(Enumerable.Empty<Card>())
-        {
-        }
+        public Deck() : this(Enumerable.Empty<Card>()) { }
 
-        public Deck(IEnumerable<Card> deck)
-        {
-            this.deck = deck.ToImmutableList();
-        }
+        public Deck(IEnumerable<Card> deck) => this.deck = deck.ToImmutableList();
 
         public IList<Card> Cards => deck.ToList();
 
         public int Count => deck.Count;
 
-        public static Deck BuildDeck(IEnumerable<Card> list) => new Deck(list);
+        public static Deck CreateDeck(IEnumerable<Card> list) => new Deck(list);
 
-        public static Deck BuildStandard52CardDeck() => BuildDeck(Card.List.OrderBy(card => card.Value));
+        public static Deck EmptyDeck() => CreateDeck(Enumerable.Empty<Card>());
 
-        public Deck Add(Card card)
-        {
-            return new Deck(deck.Add(card));
-        }
+        public static Deck Standard52CardDeck() => CreateDeck(Card.List.OrderBy(card => card.Value));
 
-        public Deck Add(IEnumerable<Card> card)
-        {
-            return new Deck(deck.AddRange(card));
-        }
+        public Deck Add(Card card) => new Deck(deck.Add(card));
 
+        public Deck Add(IEnumerable<Card> card) => new Deck(deck.AddRange(card));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="card"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">
+        /// The deck is empty.
+        /// </exception>
         public Deck Pop(out Card card)
         {
-            card = deck.Last();
-            return BuildDeck(deck.Remove(card));
+            try
+            {
+                card = deck.Last();
+                return CreateDeck(deck.Remove(card));
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new InvalidOperationException("The deck is empty.", ex);
+            }
         }
 
         public Deck Shuffle()

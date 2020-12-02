@@ -4,7 +4,9 @@ using CardLibrary.Cards;
 using FluentAssertions;
 using System;
 using System.Linq;
+using MoreLinq;
 using Xunit;
+using System.Collections.Generic;
 
 namespace CardTests.CardLibraryTest
 {
@@ -15,7 +17,7 @@ namespace CardTests.CardLibraryTest
         [Fact]
         public void Deck_Build_52Cards()
         {
-            Deck.BuildStandard52CardDeck().Cards
+            Deck.Standard52CardDeck().Cards
                 .Should().HaveCount(STANDARD_DECK_COUNT)
                 .And.BeInAscendingOrder(x => x.Value)
                 .And.OnlyHaveUniqueItems();
@@ -30,14 +32,38 @@ namespace CardTests.CardLibraryTest
         }
 
         [Fact]
+        public void Deck_Add_SingleCardSuccefully()
+        {
+            Deck sut = Deck.EmptyDeck();
+            sut = sut.Add(Card.AceOfClubs);
+            sut.Cards.Should().Contain(Card.AceOfClubs);
+        }
+
+        [Fact]
+        public void Deck_Add_RangeOfCards()
+        {
+            Deck sut = Deck.EmptyDeck();
+            sut = sut.Add(new List<Card>() 
+            { 
+                Card.AceOfClubs, 
+                Card.AceOfDiamonds 
+            });
+            sut.Cards.Should()
+                .Contain(Card.AceOfClubs).And
+                .Contain(Card.AceOfDiamonds);
+        }
+
+        [Fact]
         public void Deck_Pop_RemoveLastElement()
         {
-            var sut = Deck.BuildStandard52CardDeck();
+            var sut = Deck.Standard52CardDeck();
             var originalDeck = sut.Cards;
             var deck = sut.Pop(out Card card);
 
             card.Should().Be(originalDeck.Last());
-            deck.Cards.Should().NotContain(card).And.HaveCount(originalDeck.Count - 1);
+            deck.Cards.Should()
+                .NotContain(card).And
+                .HaveCount(originalDeck.Count - 1);
         }
 
         [Theory, AutoData]
@@ -49,7 +75,7 @@ namespace CardTests.CardLibraryTest
         [Fact]
         public void Deck_Shuffle_Equivalency()
         {
-            var deck = Deck.BuildStandard52CardDeck();
+            var deck = Deck.Standard52CardDeck();
             var cards = deck.Cards;
             var shuffledCards = deck.Shuffle().Cards;
 

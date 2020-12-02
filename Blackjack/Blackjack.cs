@@ -38,10 +38,12 @@ namespace BlackjackLibrary
     {
         public Blackjack()
         {
-            DealerDeck = Deck.BuildStandard52CardDeck().Shuffle();
+            Dealer = new Participant(Deck.Standard52CardDeck().Shuffle());
+            Player = new Participant();
         }
 
-        public Deck DealerDeck { get; private set; }
+        private Participant Dealer { get; init; }
+        private Participant Player { get; init; }
 
         public void StartGame()
         {
@@ -59,9 +61,10 @@ namespace BlackjackLibrary
             } while (gameLoopFlag);
         }
 
-        //public void Deal()
-        //{
-        //    //DealerDeck = DealerDeck.Pop(out Card card);
-        //}
+        private IEnumerable<Card> Deal(Participant deck, int amount)
+        {
+            var cards = deck.Remove(amount);
+            return cards;
+        }
     }
 }
